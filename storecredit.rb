@@ -1,6 +1,8 @@
 class StoreCredit
   def initialize(input_string)
-    @lines = input_string.split(/\n/)
+    # @lines = input_string.split(/\n/)
+    @lines = input_string
+
   end
 
   class InputError < RuntimeError
@@ -28,6 +30,7 @@ class StoreCredit
     messages
   end
 
+  # Returns array of indexes of prices whose sum equals the given sum
   def find_items(sum, prices)
     # O(n)
     prices.each_with_index do |price, index|
@@ -51,5 +54,10 @@ class StoreCredit
   end
 end
 
-# lines = ARGF.lines.to_a
-#  input = StoreCredit.new
+# lines = ARGF.lines
+lines = File.readlines(ARGV[0])
+input = StoreCredit.new lines
+input.output.each do |message|
+  p message
+end
+
