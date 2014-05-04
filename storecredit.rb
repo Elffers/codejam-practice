@@ -1,8 +1,9 @@
 class StoreCredit
-  def initialize(input_string)
-    # @lines = input_string.split(/\n/)
-    @lines = input_string
+  attr_accessor :lines
 
+  def initialize(lines)
+    # @lines = lines.split(/\n/) #for when input is string
+    @lines = lines.map{ |line| line.delete('\n') }
   end
 
   class InputError < RuntimeError

@@ -2,20 +2,7 @@ require_relative 'storecredit'
 
 describe StoreCredit do
 
-  let(:input) {
-    <<-INPUT
-3
-100
-3
-5 75 25
-200
-7
-150 24 79 50 88 345 3
-8
-8
-2 1 9 4 4 56 90 3
-    INPUT
-  }
+  let(:input) { File.readlines('test.txt') }
 
   let(:output) {
     <<-OUTPUT
@@ -27,8 +14,13 @@ Case #3: 4 5
 
 let(:data){ StoreCredit.new input }
 
-let(:bad_input){ "1" }
+let(:bad_input){ ["1"] }
 
+  context 'initialize' do
+    it "lines should be an array" do
+      expect(data.lines).to be_an_instance_of Array
+    end
+  end
   context "parse" do
     it "has three entries" do
       expect(data.parse.length).to eq 3
@@ -58,10 +50,13 @@ let(:bad_input){ "1" }
       kase = [100, [5, 75, 25]]
       kase2 = [200, [150, 24, 79, 50, 88, 345, 3]]
       kase3 = [8, [2, 1, 9, 4, 4, 56, 90, 3]]
+      kase4 = [8, [1, 9, 4, 2, 56, 90, 3, 6]]
 
       expect(data.find_items kase.first, kase.last).to eq [2, 3]
       expect(data.find_items kase2.first, kase2.last).to eq [1, 4]
       expect(data.find_items kase3.first, kase3.last).to eq [4, 5]
+      expect(data.find_items kase4.first, kase4.last).to eq [4, 8]
+
     end
   end
 
