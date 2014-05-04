@@ -36,9 +36,7 @@ class StoreCredit
   end
 
   def find_all_index(value, array)
-    # indices = []
     array.each_with_index.map { |el, i| i + 1 if el == value}.compact
-    # indices
   end
 
   def prices(string)
