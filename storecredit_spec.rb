@@ -16,6 +16,7 @@ describe StoreCredit do
 2 1 9 4 4 56 90 3
     INPUT
   }
+
   let(:output) {
     <<-OUTPUT
 Case #1: 2 3
@@ -23,7 +24,7 @@ Case #2: 1 4
 Case #3: 4 5
     OUTPUT
   }
-let(:data){ StoreCredit.new input }
+let!(:data){ StoreCredit.new input }
 
   context "parse" do
     it "has three entries" do
@@ -36,14 +37,28 @@ let(:data){ StoreCredit.new input }
     end
   end
 
-  context "find_items" do
-    it "returns result for each case" do
+  context "output" do
+    it "returns a result for each case" do
       number_of_cases = data.parse.length
-      expect(data.find_items.length).to eq number_of_cases
+
+      expect(data.output.length).to eq number_of_cases
     end
 
-    it "prints output of each case" do
-      expect(data.find_items.first).to eq "Case #1: 2 3"
+    xit "prints output of each case" do
+      expect(data.output.first).to eq "Case #1: 2 3"
+      expect(data.output.last).to eq "Case #3: 4 56"
     end
+  end
+
+  context "find_items" do
+    it 'returns index of items whose sum is the price' do
+      kase = [100, [5, 75, 25]]
+      kase2 = [8, [2, 1, 9, 4, 4, 56, 90, 3]]
+
+      expect(data.find_items kase.first, kase.last).to eq [2, 3]
+      expect(data.find_items kase2.first, kase2.last).to eq [4, 5]
+
+    end
+
   end
 end
