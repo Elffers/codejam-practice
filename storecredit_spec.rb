@@ -27,6 +27,8 @@ Case #3: 4 5
 
 let(:data){ StoreCredit.new input }
 
+let(:bad_input){ "1" }
+
   context "parse" do
     it "has three entries" do
       expect(data.parse.length).to eq 3
@@ -78,13 +80,17 @@ let(:data){ StoreCredit.new input }
     it 'returns an array' do
       expect(data.prices(string)).to be_an_instance_of Array
       expect(data.prices(string).count).to eq 7
-
     end
 
     it 'contains integers' do
       expect(data.prices(string).first).to be_an_instance_of Fixnum
-
     end
+  end
 
+  context 'bad input' do
+    xit 'raises error if passed bad input' do
+      bad_data = StoreCredit.new bad_input
+      expect(bad_data.parse).to raise_error
+    end
   end
 end

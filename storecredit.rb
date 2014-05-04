@@ -38,9 +38,7 @@ class StoreCredit
   def find_all_index(value, array)
     indices = []
     array.each_with_index do |el, i|
-      if el == value
-        indices << i + 1
-      end
+      indices << i + 1 if el == value
     end
     indices
   end
