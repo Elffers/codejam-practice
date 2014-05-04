@@ -21,19 +21,17 @@ class StoreCredit
   end
 
   def find_items(sum, prices)
-     prices.each_with_index do |item, index|
-        complement = sum - item
-        if prices.include? complement
-          return index + 1 , prices.find_index(complement) + 1
-        end
-     end
+    prices.each_with_index do |item, index|
+      complement = sum - item
+      if prices.include? complement
+        return index + 1 , prices.find_index(complement) + 1
+      end
+    end
   end
 
   private
   def prices(string)
     string.split(/\s/).map {|el| el.to_i}
   end
-
-
 
 end
