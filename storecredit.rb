@@ -8,9 +8,7 @@ class StoreCredit
   def parse
     array = @lines.split(/\n/)
     array.shift
-    parsed = []
-    array.each_slice(3){|x| parsed << [x.first.to_i, prices(x.last)] }
-    parsed
+    array.each_slice(3).map {|x|[x.first.to_i, prices(x.last)] }
   end
 
   def prices(string)
