@@ -56,7 +56,6 @@ let(:bad_input){ ["1"] }
       expect(data.find_items kase2.first, kase2.last).to eq [1, 4]
       expect(data.find_items kase3.first, kase3.last).to eq [4, 5]
       expect(data.find_items kase4.first, kase4.last).to eq [4, 8]
-
     end
   end
 

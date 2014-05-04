@@ -2,8 +2,7 @@ class StoreCredit
   attr_accessor :lines
 
   def initialize(lines)
-    # @lines = lines.split(/\n/) #for when input is string
-    @lines = lines.map{ |line| line.delete('\n') }
+    @lines = lines.map { |line| line.delete('\n') }
   end
 
   class InputError < RuntimeError
@@ -40,6 +39,8 @@ class StoreCredit
       if price == complement && prices.count(price) == 2
         return find_all_index(price, prices)
         # O(n)
+      elsif price == complement && prices.count(price) == 1
+        next
       elsif prices.include? complement
         return index + 1 , prices.find_index(complement) + 1
       end
