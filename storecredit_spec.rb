@@ -54,10 +54,11 @@ let!(:data){ StoreCredit.new input }
     it 'returns index of items whose sum is the price' do
       kase = [100, [5, 75, 25]]
       kase2 = [8, [2, 1, 9, 4, 4, 56, 90, 3]]
+      kase3 = [200, [150, 24, 79, 50, 88, 345, 3]]
 
       expect(data.find_items kase.first, kase.last).to eq [2, 3]
       expect(data.find_items kase2.first, kase2.last).to eq [4, 5]
-
+      expect(data.find_items kase3.first, kase3.last).to eq [1, 4]
     end
 
   end

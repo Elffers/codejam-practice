@@ -44,7 +44,6 @@ class StoreCredit
     indices
   end
 
-  private
   def prices(string)
     string.split(/\s/).map {|el| el.to_i}
   end
