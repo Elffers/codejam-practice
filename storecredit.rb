@@ -7,26 +7,41 @@ class StoreCredit
 
   def parse
     @array.shift
-    @array.each_slice(3).map { |x|[x.first.to_i, prices(x.last)] }
+    @array.each_slice(3).map { |x| [x.first.to_i, prices(x.last)] }
   end
 
   def output
     cases = self.parse
     output = {}
     cases.each_with_index do |kase, i|
-      output[i+1] =  find_items kase.first, kase.last
+      output[i + 1] =  find_items kase.first, kase.last
     end
     # p "parsed cases", cases
     output
   end
 
   def find_items(sum, prices)
-    prices.each_with_index do |item, index|
-      complement = sum - item
-      if prices.include? complement
+    # O(n)
+    prices.each_with_index do |price, index|
+      complement = sum - price
+      # O(n)
+      if price == complement && prices.count(price) == 2
+        return find_all_index(price, prices)
+        # O(n)
+      elsif prices.include? complement
         return index + 1 , prices.find_index(complement) + 1
       end
     end
+  end
+
+  def find_all_index(value, array)
+    indices = []
+    array.each_with_index do |el, i|
+      if el == value
+        indices << i + 1
+      end
+    end
+    indices
   end
 
   private
