@@ -24,7 +24,8 @@ Case #2: 1 4
 Case #3: 4 5
     OUTPUT
   }
-let!(:data){ StoreCredit.new input }
+
+let(:data){ StoreCredit.new input }
 
   context "parse" do
     it "has three entries" do
@@ -44,7 +45,7 @@ let!(:data){ StoreCredit.new input }
       expect(data.output.length).to eq number_of_cases
     end
 
-    it "prints output of each case" do
+    it "formats output message for each case" do
       expect(data.output.first).to eq "Case #1: 2 3"
       expect(data.output.last).to eq "Case #3: 4 5"
     end
@@ -60,6 +61,14 @@ let!(:data){ StoreCredit.new input }
       expect(data.find_items kase2.first, kase2.last).to eq [4, 5]
       expect(data.find_items kase3.first, kase3.last).to eq [1, 4]
     end
+  end
 
+  context 'find_all_index' do
+    it "returns the index + 1 of all elements in array" do
+      array = [2, 1, 9, 4, 4, 56, 90, 3]
+      value = 4
+
+      expect(data.find_all_index(value, array)).to eq [4, 5]
+    end
   end
 end

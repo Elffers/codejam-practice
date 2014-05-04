@@ -1,5 +1,3 @@
-# lines = ARGF.lines.to_a
-
 class StoreCredit
   def initialize(lines)
     @array = lines.split(/\n/)
@@ -50,5 +48,7 @@ class StoreCredit
   def prices(string)
     string.split(/\s/).map {|el| el.to_i}
   end
-
 end
+
+# lines = ARGF.lines.to_a
+#  input = StoreCredit.new
