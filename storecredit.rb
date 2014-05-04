@@ -8,7 +8,6 @@ class StoreCredit
 
   def parse
     if @lines.count < 4
-      p "ERROR?"
       raise InputError
     else
       @lines.shift
