@@ -71,4 +71,20 @@ let(:data){ StoreCredit.new input }
       expect(data.find_all_index(value, array)).to eq [4, 5]
     end
   end
+
+  context 'prices' do
+    let(:string){ "150 24 79 50 88 345 3" }
+
+    it 'returns an array' do
+      expect(data.prices(string)).to be_an_instance_of Array
+      expect(data.prices(string).count).to eq 7
+
+    end
+
+    it 'contains integers' do
+      expect(data.prices(string).first).to be_an_instance_of Fixnum
+
+    end
+
+  end
 end
