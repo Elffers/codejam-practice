@@ -1,11 +1,19 @@
 class StoreCredit
-  def initialize(lines)
-    @array = lines.split(/\n/)
+  def initialize(input_string)
+    @lines = input_string.split(/\n/)
+  end
+
+  class InputError < RuntimeError
   end
 
   def parse
-    @array.shift
-    @array.each_slice(3).map { |x| [x.first.to_i, prices(x.last)] }
+    if @lines.count < 4
+      p "ERROR?"
+      raise InputError
+    else
+      @lines.shift
+      @lines.each_slice(3).map { |x| [x.first.to_i, prices(x.last)] }
+    end
   end
 
   def output

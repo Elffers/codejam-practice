@@ -88,9 +88,10 @@ let(:bad_input){ "1" }
   end
 
   context 'bad input' do
-    xit 'raises error if passed bad input' do
+    it 'raises error if passed bad input' do
       bad_data = StoreCredit.new bad_input
-      expect(bad_data.parse).to raise_error
+      p bad_data
+      expect(bad_data.parse).to raise_error StoreCredit::InputError
     end
   end
 end
