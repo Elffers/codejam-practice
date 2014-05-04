@@ -56,8 +56,7 @@ class StoreCredit
   end
 end
 
-# lines = ARGF.lines
-lines = File.readlines(ARGV[0])
+lines = ARGF.each_line
 input = StoreCredit.new lines
 input.output.each do |message|
   p message
