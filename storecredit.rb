@@ -16,8 +16,11 @@ class StoreCredit
     cases.each_with_index do |kase, i|
       output[i + 1] =  find_items kase.first, kase.last
     end
-    # p "parsed cases", cases
-    output
+    messages = []
+    output.each_pair do |k, v|
+      messages << "Case ##{k}: #{v.join(" ")}"
+    end
+    messages
   end
 
   def find_items(sum, prices)

@@ -44,9 +44,9 @@ let!(:data){ StoreCredit.new input }
       expect(data.output.length).to eq number_of_cases
     end
 
-    xit "prints output of each case" do
+    it "prints output of each case" do
       expect(data.output.first).to eq "Case #1: 2 3"
-      expect(data.output.last).to eq "Case #3: 4 56"
+      expect(data.output.last).to eq "Case #3: 4 5"
     end
   end
 
