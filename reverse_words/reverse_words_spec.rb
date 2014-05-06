@@ -14,6 +14,8 @@ let!(:data){ Reverser.new input }
 
   context 'initialize' do
     it "lines should be an array" do
+      p "INPUT", input
+      p "LINES", data.lines
       expect(data.lines).to be_an_instance_of Array
     end
 

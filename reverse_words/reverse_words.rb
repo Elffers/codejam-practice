@@ -1,11 +1,12 @@
 class Reverser
   attr_accessor :lines
+
   def initialize(input)
-    @lines = input.map { |line| line.delete('\n') }
+    @lines = input.map { |line| line.delete("\n") }
   end
 
   def parse
     @lines.shift
-    @lines.map { |line| line.delete("\n") }
+    @lines
   end
 end
