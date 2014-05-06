@@ -7,6 +7,10 @@ class Reverser
 
   def parse
     @lines.shift
-    @lines
+    @lines.map { |line| line.split(/\s/) }
   end
+
+  def reverse
+  end
+
 end

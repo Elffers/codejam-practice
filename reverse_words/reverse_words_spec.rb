@@ -14,8 +14,6 @@ let!(:data){ Reverser.new input }
 
   context 'initialize' do
     it "lines should be an array" do
-      p "INPUT", input
-      p "LINES", data.lines
       expect(data.lines).to be_an_instance_of Array
     end
 
@@ -25,8 +23,10 @@ let!(:data){ Reverser.new input }
   end
 
   context 'parse' do
-    it 'returns array of strings' do
-      expect(data.parse.first).to eq "this is a test"
+    it 'returns array of arrays' do
+      expect(data.parse.first).to eq %w[this is a test]
+      expect(data.parse.last).to eq %w[all your base]
+
     end
 
     it 'has three entries' do
