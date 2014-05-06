@@ -3,13 +3,7 @@ require_relative 'reverse_words'
 describe Reverser do
 
 let(:input){ File.readlines('test.txt') }
-let(:output) {
-    <<-OUTPUT
-Case #1: test a is this
-Case #2: foobar
-Case #3: base your all
-    OUTPUT
-  }
+let(:output) { File.readlines('reverse_output_test.txt') }
 let!(:data){ Reverser.new input }
 
   context 'initialize' do
@@ -26,7 +20,6 @@ let!(:data){ Reverser.new input }
     it 'returns array of arrays' do
       expect(data.parse.first).to eq %w[this is a test]
       expect(data.parse.last).to eq %w[all your base]
-
     end
 
     it 'has three entries' do
@@ -43,6 +36,12 @@ let!(:data){ Reverser.new input }
     it 'reverses the words in a sentence' do
       arg = %w[this is a test]
       expect(data.reverse(arg)).to eq "test a is this"
+    end
+  end
+
+  context 'output' do
+    it 'formats output' do
+      expect(data.output.first).to eq "Case #1: test a is this"
     end
   end
 
