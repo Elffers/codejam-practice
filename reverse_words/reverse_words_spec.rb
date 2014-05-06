@@ -33,4 +33,17 @@ let!(:data){ Reverser.new input }
       expect(data.parse.count).to eq 3
     end
   end
+
+  context 'reverse' do
+    it 'returns word if sentence is one word long' do
+      arg = ["foobar"]
+      expect(data.reverse(arg)).to eq "foobar"
+    end
+
+    it 'reverses the words in a sentence' do
+      arg = %w[this is a test]
+      expect(data.reverse(arg)).to eq "test a is this"
+    end
+  end
+
 end
