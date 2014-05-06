@@ -1,6 +1,7 @@
 class StoreCredit
   attr_accessor :lines
 
+  # lines is input as an array from ARGF.each_line
   def initialize(lines)
     @lines = lines.map { |line| line.delete('\n') }
   end
