@@ -59,5 +59,8 @@ class T9Speller
       end
     end
   end
-
 end
+
+lines = ARGF.each_line
+speller = T9Speller.new lines
+speller.output.each {|line| p line }
