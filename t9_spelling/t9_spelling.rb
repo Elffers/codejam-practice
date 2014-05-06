@@ -11,7 +11,23 @@ class T9Speller
   end
 
   def t9(string)
+    k = Keypad.new
+    output = []
+    char_array = string.chars
+    char_array.each_with_index do |char, i|
+      if k.key_for(char) == k.key_for(char_array[i + 1])
+        output << k.keystroke(char) + " "
+      else
+        output << k.keystroke(char)
+      end
+    end
+    output.join("")
+  end
 
+  def output
+    parse.each_with_index.map do |line, i|
+      "Case ##{i + 1}: #{t9 line}"
+    end
   end
 
   class Keypad

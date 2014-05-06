@@ -29,14 +29,21 @@ describe T9Speller do
   end
 
   context 't9' do
-    string = "hi"
-    xit 'returns t9' do
-      expect(data.t9(string)).to eq "44 444"
+    string1 = "hi"
+    string2 = "yes"
+    string3 = "foo  bar"
+    string4 = "hello world"
+    it 'returns t9 spelling' do
+      expect(data.t9(string1)).to eq "44 444"
+      expect(data.t9(string2)).to eq "999337777"
+      expect(data.t9(string3)).to eq "333666 6660 022 2777"
+      expect(data.t9(string4)).to eq "4433555 555666096667775553"
+
     end
   end
 
   context 'output' do
-    xit 'formats output' do
+    it 'formats output' do
       expect(data.output).to eq output.map {|line| line.delete("\n")}
     end
   end
