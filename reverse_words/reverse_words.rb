@@ -25,5 +25,10 @@ class Reverser
     parse.each_with_index.map do |line, i|
       "Case ##{i + 1}: #{reverse line}"
     end
+
   end
 end
+
+lines = ARGF.each_line
+reverser = Reverser.new lines
+reverser.output.each {|line| p line }
