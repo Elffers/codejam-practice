@@ -40,8 +40,12 @@ let!(:data){ Reverser.new input }
   end
 
   context 'output' do
+    it 'has 3 output messages' do
+      expect(data.output.count).to eq 3
+    end
+
     it 'formats output' do
-      expect(data.output.first).to eq "Case #1: test a is this"
+      expect(data.output).to eq output.map {|line| line.delete("\n")}
     end
   end
 
