@@ -59,5 +59,5 @@ end
 
 lines = ARGF.each_line
 input = StoreCredit.new lines
-input.output.each { |message| p message }
+puts input.output
 

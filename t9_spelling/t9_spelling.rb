@@ -63,4 +63,4 @@ end
 
 lines = ARGF.each_line
 speller = T9Speller.new lines
-speller.output.each {|line| p line }
+puts speller.output

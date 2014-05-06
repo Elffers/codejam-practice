@@ -24,4 +24,4 @@ end
 
 lines = ARGF.each_line
 reverser = Reverser.new lines
-reverser.output.each {|line| p line }
+puts reverser.output
