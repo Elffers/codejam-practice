@@ -25,7 +25,6 @@ class Reverser
     parse.each_with_index.map do |line, i|
       "Case ##{i + 1}: #{reverse line}"
     end
-
   end
 end
 
