@@ -18,7 +18,6 @@ describe ScalarProduct do
 
   context 'parse' do
     it 'maps two vectors into array' do
-      p data.parse
       expect(data.parse.first).to eq [[1, 3, -5], [-2, 4, 1]]
       expect(data.parse.last).to eq [[1, 2, 3, 4, 5], [1, 0, 1, 0, 1]]
     end
@@ -30,8 +29,12 @@ describe ScalarProduct do
       line2 = [[1, 2, 3, 4, 5], [1, 0, 1, 0, 1]]
       expect(data.minimum(line1)).to eq (-25)
       expect(data.minimum(line2)).to eq 6
-
     end
   end
 
+  context 'output' do
+    it 'formats output' do
+      expect(data.output).to eq output.map {|line| line.delete("\n")}
+    end
+  end
 end

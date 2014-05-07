@@ -12,7 +12,6 @@ class ScalarProduct
   end
 
   def minimum(line)
-    # [[1, 3, -5], [-2, 4, 1]]
     prods = []
     first = line.first.permutation.to_a
     last = line.last.permutation.to_a
@@ -21,6 +20,7 @@ class ScalarProduct
         prods << product(array1, array2)
       end
     end
+
     prods.min
   end
 
@@ -34,4 +34,14 @@ class ScalarProduct
     zip = array1.zip(array2)
     zip.map{|x| x.first * x.last }.reduce(:+)
   end
+
+  def output
+    parse.each_with_index.map do |line, i|
+      "Case ##{i + 1}: #{minimum line}"
+    end
+  end
 end
+
+lines = ARGF.each_line
+scalar = ScalarProduct.new lines
+puts scalar.output
