@@ -12,16 +12,9 @@ class ScalarProduct
   end
 
   def minimum(line)
-    prods = []
-    first = line.first.permutation.to_a
-    last = line.last.permutation.to_a
-    first.each do |array1|
-      last.each do |array2|
-        prods << product(array1, array2)
-      end
-    end
-
-    prods.min
+    first = line.first.sort
+    last = line.last.sort.reverse
+    product(first, last)
   end
 
   def int_array(line)
@@ -32,7 +25,7 @@ class ScalarProduct
 
   def product(array1, array2)
     zip = array1.zip(array2)
-    zip.map{|x| x.first * x.last }.reduce(:+)
+    zip.map{ |x| x.first * x.last }.reduce(:+)
   end
 
   def output
