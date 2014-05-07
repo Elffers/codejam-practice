@@ -18,8 +18,19 @@ describe ScalarProduct do
 
   context 'parse' do
     it 'maps two vectors into array' do
-      expect(data.parse.first).to eq ["1 3 -5", "-2 4 1"]
-      expect(data.parse.last).to eq ["1 2 3 4 5", "1 0 1 0 1"]
+      p data.parse
+      expect(data.parse.first).to eq [[1, 3, -5], [-2, 4, 1]]
+      expect(data.parse.last).to eq [[1, 2, 3, 4, 5], [1, 0, 1, 0, 1]]
+    end
+  end
+
+  context 'minimum' do
+    it 'finds smallest scalar product' do
+      line1 = [[1, 3, -5], [-2, 4, 1]]
+      line2 = [[1, 2, 3, 4, 5], [1, 0, 1, 0, 1]]
+      expect(data.minimum(line1)).to eq (-25)
+      expect(data.minimum(line2)).to eq 6
+
     end
   end
 
