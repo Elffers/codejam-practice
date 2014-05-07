@@ -3,10 +3,11 @@ class ScalarProduct
 
   def initialize(input)
     @lines = input.map { |line| line.delete("\n") }
+    @lines.shift
+    @lines
   end
 
   def parse
-    # @lines.shift
-    # @lines.map { |line| line.split(/\s/) }
+    @lines.each_slice(3).map {|array| [array[1], array[2]]}
   end
 end

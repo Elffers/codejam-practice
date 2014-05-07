@@ -5,6 +5,7 @@ class T9Speller
     @lines = input.map { |line| line.delete("\n") }
   end
 
+  # Could be bad if parse called more than once
   def parse
     @lines.shift
     @lines
