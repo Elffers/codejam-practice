@@ -23,15 +23,15 @@ class ScalarProduct
     end
   end
 
-  def product(array1, array2)
-    zip = array1.zip(array2)
-    zip.map{ |x| x.first * x.last }.reduce(:+)
-  end
-
   def output
     parse.each_with_index.map do |line, i|
       "Case ##{i + 1}: #{minimum line}"
     end
+  end
+
+  def product(array1, array2)
+    zip = array1.zip(array2)
+    zip.map { |x| x.first * x.last }.reduce(:+)
   end
 end
 
