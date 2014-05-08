@@ -21,10 +21,20 @@ describe Milkshake do
     end
   end
 
+  context 'output' do
+    it 'formats output properly' do
+      expect(data.output).to eq output.map { |line| line.chomp }
+    end
+  end
+
   describe Milkshake::Kase do
     let(:customer_info){ ["1 1 1", "2 1 0 2 0", "1 5 0"] }
     let(:case_input){ ["5", "3", *customer_info] }
     let(:kase){ Milkshake::Kase.new case_input}
+    let(:impossible_input) { ["1", "2", "1 1 0", "1 1 1"]}
+    let(:impossible_kase){ Milkshake::Kase.new impossible_input}
+
+
 
     context 'initialize' do
       it 'sets flavors' do
@@ -35,20 +45,43 @@ describe Milkshake do
         expect(kase.customer_count).to eq 3
       end
 
-      it 'sets customers as array of hashes' do
-        expect(kase.customers.first).to be_an_instance_of Hash
+      it 'sets customers as array of arrays' do
+        expect(kase.customers.first).to be_an_instance_of Array
       end
     end
 
     context 'set_customers' do
-      it 'returns an array of hashes' do
+      it 'returns an array of arrays' do
         customers = kase.set_customers(customer_info)
 
         expect(customers).to be_an_instance_of Array
-        expect(customers.first).to be_an_instance_of Hash
+        expect(customers.first).to be_an_instance_of Array
       end
     end
-   end
+
+    context 'mix' do
+      it 'returns a solution' do
+        solution = kase.mix
+
+        expect(solution).to eq "1 0 0 0 0"
+      end
+
+      it 'returns all the malts' do
+        input = ["2", "2", "1 1 1", "1 2 1"]
+        kase = Milkshake::Kase.new input
+
+        solution = kase.mix
+
+        expect(solution).to eq "1 1"
+      end
+
+      it 'returns IMPOSSIBLE if no solution is found' do
+        solution = impossible_kase.mix
+
+        expect(solution).to eq "IMPOSSIBLE"
+      end
+    end
+  end
 
 
 end
