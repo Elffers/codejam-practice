@@ -7,30 +7,32 @@ describe Milkshake do
 
   context 'initialize' do
     it 'sets lines' do
-      expect(data.lines.first).to eq "5"
-    end
-    it 'sets cases' do
-      expect(data.cases).to eq "2"
+      expect(data.lines.first).to eq "2"
     end
   end
 
   context 'parse' do
-    xit 'returns array of kase objects' do
-      expect(data.parse.first).to be_an_instance_of Milkshake::Kase
+    it 'returns array of kase objects' do
+      first, second = data.parse
+
+      expect(first).to be_an_instance_of Milkshake::Kase
+
+      expect(first.flavors).to_not eq second.flavors
     end
   end
 
   describe Milkshake::Kase do
-    let(:case_input){ ["5", "3", "1 1 1", "2 1 0 2 0", "1 5 0"] }
+    let(:customer_info){ ["1 1 1", "2 1 0 2 0", "1 5 0"] }
+    let(:case_input){ ["5", "3", *customer_info] }
     let(:kase){ Milkshake::Kase.new case_input}
 
     context 'initialize' do
       it 'sets flavors' do
-        expect(kase.flavors).to eq "5"
+        expect(kase.flavors).to eq 5
       end
 
       it 'sets customer count' do
-        expect(kase.customer_count).to eq "3"
+        expect(kase.customer_count).to eq 3
       end
 
       it 'sets customers as array of hashes' do
@@ -40,10 +42,11 @@ describe Milkshake do
 
     context 'set_customers' do
       it 'returns an array of hashes' do
-        expect(kase.set_customers(case_input)).to be_an_instance_of Array
-        expect(kase.set_customers(case_input).first).to be_an_instance_of Hash
-      end
+        customers = kase.set_customers(customer_info)
 
+        expect(customers).to be_an_instance_of Array
+        expect(customers.first).to be_an_instance_of Hash
+      end
     end
    end
 
