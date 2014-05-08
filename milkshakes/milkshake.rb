@@ -31,24 +31,28 @@ Case #2: IMPOSSIBLE
     end
 
     def mix
-      # [{"1"=>[["1", "1"]]}, {"2"=>[["1", "0"], ["2", "0"]]}, {"1"=>[["5", "0"]]}]
-      return "IMPOSSIBLE" if @flavors == 1
-
-      output = Array.new(@flavors, 0)
-      @customers.each do |customer|
-        customer.each do |flavor, malted|
-          if malted == "0"
+      output = Array.new(@flavors, nil)
+      @customers.each do |preferences|
+        picked = false
+        preferences.each do |flavor, malted|
+          flavor_index = flavor.to_i - 1
+          if output[flavor_index]
             next
           else
-            output[flavor.to_i - 1] = "1"
+            picked = true
+            output[flavor_index] = malted
           end
         end
+        return "IMPOSSIBLE" unless picked
+      end
+      output = output.map do |x|
+        x = 0 if !x
+        x
       end
       output.join(" ")
     end
 
     def set_customers(lines)
-      # ["1 1 1", "2 1 0 2 0", "1 5 0"]
       array = lines.map { |line| line.split(" ") }
       array.map do |person|
         person[1..-1].each_slice(2).to_a
