@@ -23,7 +23,7 @@ describe Milkshake do
 
   context 'output' do
     it 'formats output properly' do
-      expect(data.output).to eq output.map { |line| line.chomp }
+      expect(data.output).to eq output.map { |line| line.chomp}
     end
   end
 
@@ -33,8 +33,6 @@ describe Milkshake do
     let(:kase){ Milkshake::Kase.new case_input}
     let(:impossible_input) { ["1", "2", "1 1 0", "1 1 1"]}
     let(:impossible_kase){ Milkshake::Kase.new impossible_input}
-
-
 
     context 'initialize' do
       it 'sets flavors' do
@@ -80,6 +78,25 @@ describe Milkshake do
 
         expect(solution).to eq "IMPOSSIBLE"
       end
+
+      it 'returns solution if two people have exactly the same preference' do
+        input = ["2", "2", "1 1 1", "1 1 1"]
+        kase = Milkshake::Kase.new input
+
+        solution = kase.mix
+
+        expect(solution).to eq "1 0"
+      end
+
+      it 'minimizes malts' do
+        input = ["2", "2", "2 1 1 2 0", "2 1 0 2 1"]
+        kase = Milkshake::Kase.new input
+
+        solution = kase.mix
+
+        expect(solution).to eq "0 0"
+      end
+
     end
   end
 
