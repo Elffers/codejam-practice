@@ -14,7 +14,6 @@ class Milkshake
 
   def parse
     cases = @lines.shift.to_i
-
     cases.times.map do
       Kase.new @lines
     end
@@ -22,6 +21,7 @@ class Milkshake
 
   class Kase
     attr_accessor :flavors, :customer_count, :customers
+
     def initialize(lines)
       @flavors = lines.shift.to_i
       @customer_count = lines.shift.to_i
