@@ -12,20 +12,27 @@ class Dreary
   end
 
   def combinations(line)
-    k, v = line.split(" ")
-    permutations = (0..k.to_i).to_a.repeated_permutation(3).to_a
+    k, v = line.split(" ").map { |el| el.to_i }
+
+    if v == 0
+      return k + 1
+    elsif k == v
+      return (k + 1)**3
+    end
+
+    permutations = (0..k).to_a.repeated_permutation(3).to_a
     combos = permutations.map do |perm|
       perm.combination(2).to_a
     end
     combos.select! do |combo|
-      combo.all? { |c| (c.first - c.last).abs <= v.to_i }
+      combo.all? { |c| (c.first - c.last).abs <= v }
     end
     combos.count
   end
 
   def output
     parse.each_with_index.map do |line, i|
-      "Case ##{i + 1}: #{combinations line }"
+      "Case ##{i + 1}: #{combinations line}"
     end
   end
 end
