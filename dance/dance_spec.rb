@@ -37,23 +37,13 @@ describe Dance do
   end
 
   context "#dance" do
-    it "returns new arragnement of dancers" do
-      expect(dance.dance(8, 1)).to eq [2, 1, 4, 3, 6, 5, 8, 7]
-      expect(dance.dance(8, 2)).to eq [7, 4, 1, 6, 3, 8, 5, 2]
-    end
-  end
-
-  context "#swap odd" do
-    it "swaps dancers clockwise" do
-      dancers = (1..8).to_a
-      expect(dance.swap_odd dancers ).to eq [2, 1, 4, 3, 6, 5, 8, 7]
-    end
-  end
-
-  context "#swap even" do
-    it "swaps dancers counter-clockwise" do
-      dancers = [2, 1, 4, 3, 6, 5, 8, 7]
-      expect(dance.swap_even dancers).to eq [7, 4, 1, 6, 3, 8, 5, 2]
+    it "returns new arrangement of dancers" do
+      expected1 = {1=>1, 2=>0, 3=>3, 4=>2, 5=>5, 6=>4, 7=>7, 8=>6}
+      expected2 = {1=>2, 2=>7, 3=>4, 4=>1, 5=>6, 6=>3, 7=>0, 8=>5}
+      # [2, 1, 4, 3, 6, 5, 8, 7]
+      expect(dance.dance(8, 1)).to eq expected1
+      # [7, 4, 1, 6, 3, 8, 5, 2]
+      expect(dance.dance(8, 2)).to eq expected2
     end
   end
 

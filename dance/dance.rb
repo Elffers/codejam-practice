@@ -15,41 +15,35 @@ class Dance
 
   def find_partners line
     dancers, target, turns = line.split.map { |x| x.to_i }
-    a = dance(dancers, turns)
-    i = a.find_index(target)
-    # account for wrap around
-    right = (i + 1) % dancers
-    left = (i - 1)
-    [a[right], a[left]].join(" ")
+    arrangement = dance(dancers, turns)
+    new_target_index = arrangement[target]
+    rindex = (new_target_index + 1) % dancers.to_i
+    lindex = (new_target_index - 1) % dancers.to_i
+    right = arrangement.key(rindex)
+    left = arrangement.key(lindex)
+    [right, left].join(" ")
   end
 
-  def dance dancers, turns
-    dancers = (1..dancers).to_a
-    turns = (1..turns).to_a
-    turns.each do |turn|
-      if turn.odd?
-      dancers = swap_odd dancers
+  def dance num_dancers, turns
+    rotations = turns % num_dancers
+    dancers = (1..num_dancers).to_a
+    new_arrangement = {}
+    dancers.map do |d|
+      if d.odd?
+        new_arrangement[d] = (d + rotations - 1) % num_dancers
       else
-        dancers = swap_even dancers
+        new_arrangement[d] = (d - rotations - 1) % num_dancers
       end
     end
-    dancers
+    new_arrangement
   end
 
-  def swap_odd dancers
-    dancers.each_slice(2).flat_map do |(a, b)|
-      [b, a]
+  def arrangement(hash)
+    array = []
+    hash.each do |k, v|
+      array[v] = k
     end
-  end
-
-  def swap_even dancers
-    last = dancers.pop
-    new = dancers.unshift last
-
-    swapped = swap_odd new
-
-    first = swapped.shift
-    swapped << first
+    array
   end
 
   def output
