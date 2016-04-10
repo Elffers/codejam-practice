@@ -18,14 +18,14 @@ class Flipper
     if stack.empty?
       return flips
     end
-
-    # binding.pry
     bottom = stack.last
-    if bottom == "-"
-      flip stack
+    if bottom == "+"
+      stack.pop
+    else
       flips += 1
+      stack = flip stack
+      count_flips stack, flips
     end
-    stack.pop
     count_flips stack, flips
   end
 
